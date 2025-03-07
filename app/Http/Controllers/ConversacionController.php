@@ -2,75 +2,68 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Conversacion;
-use App\Models\ConversacionUsuario;
+use Illuminate\Http\Request;
 
 class ConversacionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra todas las conversaciones.
      */
     public function index()
     {
-        //
+        $conversaciones = Conversacion::all();
+        return response()->json($conversaciones);
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        Conversacion::all();
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Almacena una nueva conversación.
      */
     public function store(Request $request)
     {
-        $conversacion = Conversacion::create([
-            "nombre"=> $request->input("nombre"),
+        // Validamos la entrada
+        $data = $request->validate([
+            'nombre' => 'required|string|max:45'
         ]);
 
-        ConversacionUsuario::create([
-            "conversacion_id" => $conversacion->id,
-            "idUsuario1" => $request->input("idUsuario1"),
-            "idUsuario2" => $request->input("idUsuario2"),
+        $conversacion = Conversacion::create($data);
+
+        return response()->json($conversacion, 201);
+    }
+
+    /**
+     * Muestra una conversación en particular.
+     */
+    public function show($id)
+    {
+        $conversacion = Conversacion::findOrFail($id);
+        return response()->json($conversacion);
+    }
+
+    /**
+     * Actualiza los datos de una conversación.
+     */
+    public function update(Request $request, $id)
+    {
+        $conversacion = Conversacion::findOrFail($id);
+
+        $data = $request->validate([
+            'nombre' => 'sometimes|required|string|max:45'
         ]);
 
+        $conversacion->update($data);
 
+        return response()->json($conversacion);
     }
 
     /**
-     * Display the specified resource.
+     * Elimina una conversación.
      */
-    public function show(string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $conversacion = Conversacion::findOrFail($id);
+        $conversacion->delete();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return response()->json(null, 204);
     }
 }

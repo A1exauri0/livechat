@@ -8,83 +8,65 @@ use Illuminate\Http\Request;
 class MensajeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostrar una lista de todos los mensajes.
      */
     public function index()
     {
-        Mensaje::all();
+        $mensajes = Mensaje::all();
+        return response()->json($mensajes);
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Almacenar un nuevo mensaje.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        "idConversacion" => ["required", "integer", "exists:conversaciones,id"],
-        "idUsuario" => ["required", "integer", "exists:users,id"],
-        "mensaje" => ["required", "string", "min:1", "max:255"],
-    ]);
-
-    // Crear el mensaje
-    Mensaje::create([
-        "idConversacion" => $request->input("idConversacion"),
-        "idUsuario" => $request->input("idUsuario"),
-        "mensaje" => $request->input("mensaje"),
-    ]);
-
-    return response([
-        "message" => "Mensaje creado correctamente",
-    ], 200);
-}
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
     {
-        Mensaje::findOrFail($id);
+        // Validación de datos
+        $data = $request->validate([
+            'idConversacion' => 'required|exists:conversaciones,idConversacion',
+            'idUsuario'      => 'required|exists:users,id',
+            'mensaje'        => 'required|string',
+        ]);
 
-        return response([
-            "message" => "Mensaje encontrado correctamente",
-        ], 200);
+        $mensaje = Mensaje::create($data);
+
+        return response()->json($mensaje, 201);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Mostrar un mensaje en particular.
      */
-    public function edit(string $id)
+    public function show($id)
     {
-        //
+        $mensaje = Mensaje::findOrFail($id);
+        return response()->json($mensaje);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizar un mensaje existente.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        // Mensaje::find($id)->update([
-        //     "" => $request->input(""),
-        // ]);
+        $mensaje = Mensaje::findOrFail($id);
 
-        return response([
-            "message" => "Mensaje actualizado correctamente",
-        ], 200);
+        $data = $request->validate([
+            // Puedes actualizar el contenido del mensaje o incluso la relación si es necesario
+            'mensaje' => 'sometimes|required|string',
+        ]);
+
+        $mensaje->update($data);
+
+        return response()->json($mensaje);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar un mensaje.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $mensaje = Mensaje::findOrFail($id);
+        $mensaje->delete();
+
+        return response()->json(null, 204);
     }
 }

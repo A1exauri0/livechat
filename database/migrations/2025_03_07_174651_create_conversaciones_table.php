@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('conversaciones', function (Blueprint $table) {
             $table->id('idConversacion');
+            $table->string('nombre', 45);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
