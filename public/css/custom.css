@@ -1,0 +1,25 @@
+
+/*Navbar*/
+.navcustom {
+    background-color: #ffffff !important;
+}
+
+/* Color texto Navbar */
+.navcustom .navbar-brand,
+.navcustom .nav-link {
+    color: rgb(205, 20, 21) !important;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Imagen de fondo */
+body {
+    background-image: url('../images/Agroindustria.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+}
