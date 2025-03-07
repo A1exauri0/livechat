@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function conversacaciones()
+    {
+        return $this->belongsToMany(Conversacion::class,'conversacion_usuario','id','idConversacion');
+    }
+
+    public function mensajes()
+    {
+        return $this->hasMany(Mensaje::class, 'idUsuario');
+    }
 }
