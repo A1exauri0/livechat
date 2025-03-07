@@ -6,3 +6,12 @@
     </div>
 </div>
 
+<script>
+    document.getElementById('nombre').addEventListener('input', function(e) {
+        @this.set('nombre', e.target.value);
+    });
+
+    window.livewire.on('mensajeRecibido', (mensaje) => {
+        console.log(mensaje);
+    });
+</script>
