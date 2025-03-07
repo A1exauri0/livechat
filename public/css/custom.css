@@ -23,3 +23,7 @@ body {
     background-repeat: no-repeat;
     height: 100%;
 }
+
+.textarea-custom{
+    resize: none;
+}
