@@ -27,3 +27,7 @@ body {
 .textarea-custom{
     resize: none;
 }
+
+.footer-custom{
+    background-color: #083c3c;
+}

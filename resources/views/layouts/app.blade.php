@@ -92,4 +92,13 @@
     @livewireScripts
 </body>
 
+<footer class="footer-custom text-white text-center py-3">
+    <div class="container">
+        <p>© 2025. Todos Los derechos Reservados. Diseño x Duapulos</p>
+        <p>
+            <a href="{{ url('/privacy-policy') }}" class="text-white">Política de Privacidad</a> |
+            <a href="{{ url('/terms-of-service') }}" class="text-white">Términos de Servicio</a>
+        </p>
+    </div>
+</footer>
 </html>

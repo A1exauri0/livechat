@@ -1,23 +1,19 @@
 <div class="card mb-3">
-    <div class="card-header">
+    <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0"> Chats Activos</h5>
+        <button wire:click="abrirModal" class="btn btn-danger">Chats Finalizados</button>
     </div>
-    <ul class="list-group">
-        <a href="#"
-            class="list-group-item list-group-item-action disabled d-flex justify-content-between align-items-center">
-            Dapibus ac facilisis in
-            <span class="badge bg-danger rounded-pill">Finalizado</span>
-        </a>
-        <a href="#"
-            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-            Dapibus ac facilisis in
-            <span class="badge bg-warning rounded-pill">Pendiente</span>
-        </a>
-        <a href="#"
-            class="list-group-item list-group-item-action disabled d-flex justify-content-between align-items-center">
-            Dapibus ac facilisis in
-            <span class="badge bg-danger rounded-pill">Finalizado</span>
-        </a>
+    <div style="max-height: calc(87vh - 200px); overflow-y: auto;">
+        <ul class="list-group">
 
-    </ul>
+            @for ($i = 0; $i < 20; $i++)
+                <a href="#"
+                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    Dapibus ac facilisis in
+                    <span class="badge bg-warning rounded-pill">Pendiente</span>
+                </a>
+            @endfor
+        </ul>
+
+    </div>
 </div>

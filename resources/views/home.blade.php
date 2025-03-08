@@ -17,7 +17,9 @@
                     @endrole
                     @role('soporte')
                         <livewire:chat-list />
+                        <livewire:chat-list-finished />
                     @endrole
+
                 </div>
             </div>
         </div>
