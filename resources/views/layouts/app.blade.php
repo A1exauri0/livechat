@@ -41,9 +41,15 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    @role('admin')
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item"><a class="nav-link" href="">
+                                    Usuarios</a></li>
 
-                    </ul>
+                            <li class="nav-item"><a class="nav-link" href="">
+                                    Preguntas</a></li>
+                        </ul>
+                    @endrole
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -96,9 +102,10 @@
     <div class="container">
         <p>© 2025. Todos Los derechos Reservados. Diseño x Duapulos</p>
         <p>
-            <a href="{{ url('/privacy-policy') }}" class="text-white">Política de Privacidad</a> |
-            <a href="{{ url('/terms-of-service') }}" class="text-white">Términos de Servicio</a>
+            <a href="{{ url('#') }}" class="text-white">Política de Privacidad</a> |
+            <a href="{{ url('#') }}" class="text-white">Términos de Servicio</a>
         </p>
     </div>
 </footer>
+
 </html>
