@@ -92,7 +92,7 @@
     @livewireScripts
 </body>
 
-<footer class="footer-custom text-white text-center py-3">
+<footer class="footer-custom text-white text-center py-3 mt-auto">
     <div class="container">
         <p>© 2025. Todos Los derechos Reservados. Diseño x Duapulos</p>
         <p>
