@@ -43,10 +43,10 @@
                     <!-- Left Side Of Navbar -->
                     @role('admin')
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item"><a class="nav-link" href="">
+                            <li class="nav-item"><a class="nav-link" href="{{ route('usuarios') }}">
                                     Usuarios</a></li>
 
-                            <li class="nav-item"><a class="nav-link" href="">
+                            <li class="nav-item"><a class="nav-link" href="{{ route('preguntas') }}">
                                     Preguntas</a></li>
                         </ul>
                     @endrole

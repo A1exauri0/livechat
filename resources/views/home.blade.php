@@ -19,6 +19,9 @@
                         <livewire:chat-list />
                         <livewire:chat-list-finished />
                     @endrole
+                    @role('admin')
+                        <livewire:chat-list-Admin />
+                    @endrole
 
                 </div>
             </div>
